@@ -31,7 +31,7 @@ function! s:outputter.finish(session)
       let errorformat = '%f:%l:%c:\ %m'
       let errors = []
       for l in split(self._result, '\n')
-        if l =~ '^.*:.*:.*:.*$' && l !~ '^.*TEST_AFTER_BUILD.*$'
+        if l =~ '^[^ ]*:.*:.*:.*$' && l !~ '^.*TEST_AFTER_BUILD.*$' && l != '^.* note: .*$'
           call add(errors, l)
         endif
       endfor
